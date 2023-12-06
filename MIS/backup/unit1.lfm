@@ -1,0 +1,83 @@
+object Form1: TForm1
+  Left = 924
+  Height = 492
+  Top = 244
+  Width = 763
+  Caption = 'Form1'
+  ClientHeight = 492
+  ClientWidth = 763
+  LCLVersion = '2.2.6.0'
+  object Button1: TButton
+    Left = 360
+    Height = 25
+    Top = 256
+    Width = 75
+    Caption = 'Příhlásit se'
+    OnClick = Edit1Change
+    TabOrder = 0
+  end
+  object Edit1: TEdit
+    Left = 360
+    Height = 23
+    Top = 160
+    Width = 80
+    TabOrder = 1
+    TextHint = 'Jmeno'
+  end
+  object Edit2: TEdit
+    Left = 360
+    Height = 23
+    Top = 200
+    Width = 80
+    EchoMode = emPassword
+    PasswordChar = '*'
+    TabOrder = 2
+    TextHint = 'Heslo'
+  end
+  object SQLite3Connection1: TSQLite3Connection
+    Connected = True
+    LoginPrompt = False
+    DatabaseName = 'MIS_DATA_LOGIN.db'
+    KeepConnection = False
+    Transaction = SQLTransaction1
+    AlwaysUseBigint = False
+    Left = 48
+    Top = 24
+  end
+  object SQLTransaction1: TSQLTransaction
+    Active = True
+    Database = SQLite3Connection1
+    Left = 48
+    Top = 88
+  end
+  object DataSource1: TDataSource
+    DataSet = SQLQuery1
+    Left = 48
+    Top = 240
+  end
+  object SQLQuery1: TSQLQuery
+    IndexName = 'DEFAULT_ORDER'
+    MaxIndexesCount = 4
+    FieldDefs = <    
+      item
+        Name = 'PASSWORD'
+        DataType = ftMemo
+        Precision = -1
+      end    
+      item
+        Name = 'LOGIN_ID'
+        DataType = ftMemo
+        Precision = -1
+      end>
+    Active = True
+    Database = SQLite3Connection1
+    Transaction = SQLTransaction1
+    SQL.Strings = (
+      'SELECT PASSWORD,LOGIN_ID FROM LOGIN;'
+    )
+    Params = <>
+    Macros = <>
+    Left = 48
+    Top = 168
+  end
+end
